@@ -1,11 +1,12 @@
-import Heidelpay from '../../Heidelpay'
-import Authorization, { authorizeObject } from '../business/Authorization'
-import Charge, { chargeObject } from '../business/Charge'
+import Heidelpay from '../../Heidelpay';
+import Authorization, { authorizeObject } from '../business/Authorization';
+import Charge, { chargeObject } from '../business/Charge';
 
 export default abstract class AbstractPaymentType {
   private _id: string
   private _heidelpay: Heidelpay
   private _geoLocation: any
+  private _email: string
 
   public abstract getTypeUrl(): string
   public abstract getPayload(): any
@@ -46,6 +47,7 @@ export default abstract class AbstractPaymentType {
     return this._id
   }
 
+
   /**
    * Authorize with payment card
    *
@@ -84,4 +86,23 @@ export default abstract class AbstractPaymentType {
   public setGeoLocation(geoLocation: any): any {
     this._geoLocation = geoLocation
   }
+
+  /**
+   * Set PayPal email
+   *
+   * @param {string} email
+   */
+  public setEmail(email: string): void {
+    this._email = email
+  }
+
+  /**
+   * Get PayPal email
+   *
+   * @returns {string}
+   */
+  public getEmail(): string {
+    return this._email
+  }
+
 }

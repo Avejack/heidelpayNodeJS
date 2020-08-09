@@ -1,24 +1,24 @@
-import Card from '../payments/types/Card'
-import AbstractPaymentType from '../payments/types/AbstractPaymentType'
-import EPS from '../payments/types/Eps'
-import Giropay from '../payments/types/Giropay'
-import Paypal from '../payments/types/Paypal'
-import Ideal from '../payments/types/Ideal'
-import Invoice from '../payments/types/Invoice'
-import InvoiceGuaranteed from '../payments/types/InvoiceGuaranteed'
-import InvoiceFactoring from '../payments/types/InvoiceFactoring'
-import Prepayment from '../payments/types/Prepayment'
-import Przelewy24 from '../payments/types/Przelewy24'
-import SepaDirectDebit from '../payments/types/SepaDirectDebit'
-import SepaDirectDebitGuaranteed from '../payments/types/SepaDirectDebitGuaranteed'
-import SepaDirectDebitSecured from '../payments/types/SepaDirectDebitSecured'
-import Sofort from '../payments/types/Sofort'
-import PIS from '../payments/types/Pis'
-import Alipay from '../payments/types/Alipay'
-import WechatPay from '../payments/types/WechatPay'
-import Bancontact from '../payments/types/Bancontact'
-import HirePurchase from '../payments/types/HirePurchase'
-import InvoiceSecured from '../payments/types/InvoiceSecured'
+import AbstractPaymentType from '../payments/types/AbstractPaymentType';
+import Alipay from '../payments/types/Alipay';
+import Bancontact from '../payments/types/Bancontact';
+import Card from '../payments/types/Card';
+import EPS from '../payments/types/Eps';
+import Giropay from '../payments/types/Giropay';
+import HirePurchase from '../payments/types/HirePurchase';
+import Ideal from '../payments/types/Ideal';
+import Invoice from '../payments/types/Invoice';
+import InvoiceFactoring from '../payments/types/InvoiceFactoring';
+import InvoiceGuaranteed from '../payments/types/InvoiceGuaranteed';
+import InvoiceSecured from '../payments/types/InvoiceSecured';
+import Paypal from '../payments/types/Paypal';
+import PIS from '../payments/types/Pis';
+import Prepayment from '../payments/types/Prepayment';
+import Przelewy24 from '../payments/types/Przelewy24';
+import SepaDirectDebit from '../payments/types/SepaDirectDebit';
+import SepaDirectDebitGuaranteed from '../payments/types/SepaDirectDebitGuaranteed';
+import SepaDirectDebitSecured from '../payments/types/SepaDirectDebitSecured';
+import Sofort from '../payments/types/Sofort';
+import WechatPay from '../payments/types/WechatPay';
 
 /**
  * Replace URL with parameters: {paymentId} => s-pay-1781
@@ -148,19 +148,20 @@ export const mapResponsePaymentType = (response: any): AbstractPaymentType => {
       eps.setId(response.id)
       eps.setGeoLocation(response.geoLocation)
       return eps
-      
+
     case 'giropay':
       const giropay: Giropay = new Giropay()
 
       giropay.setId(response.id)
       giropay.setGeoLocation(response.geoLocation)
       return giropay
-    
+
     case 'paypal':
       const paypal: Paypal = new Paypal()
 
       paypal.setId(response.id)
       paypal.setGeoLocation(response.geoLocation)
+      paypal.setEmail(response.email)
       return paypal
 
     case 'ideal':
@@ -235,9 +236,9 @@ export const mapResponsePaymentType = (response: any): AbstractPaymentType => {
         .setBic(response.bic)
         .setHolder(response.holder)
 
-        dds.setId(response.id)
-        dds.setGeoLocation(response.geoLocation)
-        return dds
+      dds.setId(response.id)
+      dds.setGeoLocation(response.geoLocation)
+      return dds
 
     case 'sofort':
       const sofort: Sofort = new Sofort()
