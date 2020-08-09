@@ -1,8 +1,9 @@
 const Base64 = require('js-base64').Base64
 require('es6-promise').polyfill()
 require('isomorphic-fetch')
-import Environment from '../configs/Environment'
-import {SDK_TYPE, SDK_VERSION} from '../configs/Version'
+import Environment from '../configs/Environment';
+import { SDK_TYPE, SDK_VERSION } from '../configs/Version';
+
 /**
  * Fetch Adapter
  *
@@ -16,7 +17,7 @@ export class FetchAdapter {
   constructor(locale?: string, env?: string) {
     let argsConfig
 
-    switch(env) {
+    switch (env) {
       case 'development':
         argsConfig = Environment['development']
         break
@@ -97,7 +98,7 @@ export class FetchAdapter {
     )
   }
 
-  private async _fetch(url: string, options: any = {}, privateKey: string, isRawUrl: Boolean = false): Promise<Response> {
+  private async _fetch(url: string, options: any = {}, privateKey: string, isRawUrl: Boolean = false): Promise<any> {
     return new Promise((resolve, reject) => {
 
       const password = ''
